@@ -19,5 +19,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/likeastore/seismo-node-client/issues"
+  },
+  "dependencies": {
+    "request": "~2.27.0"
   }
 }
