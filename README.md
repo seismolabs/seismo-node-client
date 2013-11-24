@@ -24,7 +24,7 @@ events({id: 'app-start', event: 'application started'});
 events('application stated', {environment: process.env.NODE_ENV});
 ```
 
-```js
+```jsby
 // or ..
 events({id: 'app-start', event: 'application started'}, {environment: process.env.NODE_ENV});
 
@@ -97,6 +97,7 @@ events.query({id: 'app-start'}, function (err, results) {
 	console.log(results);
 });
 ```
+
 
 For convenience, you can request data by certain date.
 
