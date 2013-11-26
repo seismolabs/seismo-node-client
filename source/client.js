@@ -1,4 +1,5 @@
 var request = require('request');
+var query = require('query');
 
 module.exports = function (app, options) {
 	if (!app) {
@@ -70,13 +71,13 @@ module.exports = function (app, options) {
 		});
 	};
 
-	client.query = function(query, callback) {
+	client.query = function(params, callback) {
 		var url = server + '/api/events/' + app;
 
-		if (typeof query === 'function') {
-			callback = query;
+		if (typeof params === 'function') {
+			callback = params;
 		} else {
-			url += createQuery(query);
+			url += query.events(params);
 		}
 
 		ensureAccessToken(function (err, token) {
@@ -96,37 +97,15 @@ module.exports = function (app, options) {
 				callback(null, resp.body);
 			});
 		});
-
-		function createQuery(q) {
-			if (typeof q === 'string') {
-				return '?event=' + q;
-			}
-
-			if (typeof q === 'object' && q.id && q.date) {
-				return '?id=' + q.id + '&date=' + q.date;
-			}
-
-			if (typeof q === 'object' && q.id) {
-				return '?id=' + q.id;
-			}
-
-			if (typeof q === 'object' && q.date && q.event) {
-				return '?date=' + q.date + '&event=' + q.event;
-			}
-
-			if (typeof q === 'object' && q.date) {
-				return '?date=' + q.date;
-			}
-		}
 	};
 
-	client.report = function(query, callback) {
-		if (!query.report) {
+	client.report = function(params, callback) {
+		if (!params.report) {
 			return callback('missing report option');
 		}
 
-		var url = server + '/api/reports/' + query.report + '/' + app;
-		url += createQuery(query);
+		var url = server + '/api/reports/' + params.report + '/' + app;
+		url += query.reports(params);
 
 		ensureAccessToken(function (err, token) {
 			if (err) {
@@ -145,28 +124,6 @@ module.exports = function (app, options) {
 				callback(null, resp.body);
 			});
 		});
-
-		function createQuery(query) {
-			if (query.report === 'hour') {
-				return '?hour=' + query.hour + '&date=' + query.date;
-			}
-
-			if (query.report === 'day') {
-				return '?date=' + query.date;
-			}
-
-			if (query.report === 'week') {
-				return '?date=' + query.date;
-			}
-
-			if (query.report === 'month') {
-				return '?date=' + query.date;
-			}
-
-			if (query.report === 'period') {
-				return '?from=' + query.from + '&to=' + query.to;
-			}
-		}
 	};
 
 	return client;
