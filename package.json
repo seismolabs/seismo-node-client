@@ -4,7 +4,8 @@
   "description": "Seismo node.js client",
   "main": "source/client.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./test/runMocha",
+    "watch": "nodemon --watch source --watch config source/server.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,8 @@
     "url": "https://github.com/likeastore/seismo-node-client/issues"
   },
   "dependencies": {
-    "request": "~2.27.0"
+    "request": "~2.27.0",
+    "moment": "~2.4.0"
   },
   "devDependencies": {
     "mocha": "~1.13.0",
