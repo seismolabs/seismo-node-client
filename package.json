@@ -1,5 +1,5 @@
 {
-  "name": "seismo-node-client",
+  "name": "seismo-client",
   "version": "0.0.1",
   "description": "Seismo node.js client",
   "main": "source/client.js",
