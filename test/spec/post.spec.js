@@ -1,4 +1,3 @@
-/*
 var moment = require('moment');
 var client = require('../../source/client');
 
@@ -6,6 +5,8 @@ describe('posting events', function () {
 	var app, events, error, response, options;
 
 	before(function () {
+		console.log(process.env.NODE_ENV);
+
 		options = {
 			credentials: {
 				username: 'seismo',
@@ -148,4 +149,3 @@ describe('posting events', function () {
 		});
 	});
 });
-*/
