@@ -1,6 +1,6 @@
 {
   "name": "seismo-client",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Seismo node.js client",
   "main": "source/client.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/likeastore/seismo-node-client.git"
+    "url": "git://github.com/seismolabs/seismo-node-client/seismo-node-client.git"
   },
   "keywords": [
     "events",
@@ -19,7 +19,7 @@
   "author": "alexander.beletsky@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/likeastore/seismo-node-client/issues"
+    "url": "https://github.com/seismolabs/seismo-node-client/issues"
   },
   "dependencies": {
     "request": "~2.27.0",
