@@ -1,7 +1,6 @@
-/*
 var moment = require('moment');
 var client = require('../../source/client');
-var testUtils = require('../utils');
+var async = require('async');
 
 describe('quering events', function () {
 	var app, events, error, options, results;
@@ -19,12 +18,16 @@ describe('quering events', function () {
 		app = 'test-quering-app-' + moment().valueOf();
 	});
 
-	before(function (done) {
-		testUtils.createQueringData(app, done);
-	});
-
 	before(function () {
 		events = client(app, options);
+	});
+
+	before(function (done) {
+		async.each(['application started', 'application stopped', 'application started'], postEvent, done);
+
+		function postEvent(event, callback) {
+			events(event, callback);
+		}
 	});
 
 	describe('all events', function () {
@@ -37,7 +40,7 @@ describe('quering events', function () {
 		});
 
 		it('should return all events for app', function () {
-			expect(results.length).to.equal(13);
+			expect(results.length).to.equal(3);
 		});
 	});
 
@@ -51,13 +54,13 @@ describe('quering events', function () {
 		});
 
 		it('should return all events by given name', function () {
-			expect(results.length).to.equal(5);
+			expect(results.length).to.equal(2);
 		});
 	});
 
 	describe('by event id', function () {
 		before(function (done) {
-			events.query({id: 'app-stopped'}, function (err, res) {
+			events.query({id: 'application-stopped'}, function (err, res) {
 				error = err;
 				results = res;
 				done(err);
@@ -65,21 +68,7 @@ describe('quering events', function () {
 		});
 
 		it('should return all events by given id', function () {
-			expect(results.length).to.equal(5);
-		});
-	});
-
-	describe('by date', function () {
-		before(function (done) {
-			events.query({date: '2013-01-28'}, function (err, res) {
-				error = err;
-				results = res;
-				done(err);
-			});
-		});
-
-		it('should return all events by given date', function () {
-			expect(results.length).to.equal(2);
+			expect(results.length).to.equal(1);
 		});
 	});
 
@@ -96,33 +85,4 @@ describe('quering events', function () {
 			expect(results.length).to.equal(3);
 		});
 	});
-
-	describe('by name and date', function () {
-		before(function (done) {
-			events.query({event: 'application started', date: '2013-01-25'}, function (err, res) {
-				error = err;
-				results = res;
-				done(err);
-			});
-		});
-
-		it('should return all events by date and event name', function () {
-			expect(results.length).to.equal(1);
-		});
-	});
-
-	describe('by id and date', function () {
-		before(function (done) {
-			events.query({id: 'app-started', date: '2013-01-25'}, function (err, res) {
-				error = err;
-				results = res;
-				done(err);
-			});
-		});
-
-		it('should return all events by date and event name', function () {
-			expect(results.length).to.equal(1);
-		});
-	});
 });
-*/
