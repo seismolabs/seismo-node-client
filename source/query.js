@@ -1,4 +1,4 @@
-var querystring = require("querystring");
+var querystring = require('querystring');
 
 var query = {
 	events: function (params) {

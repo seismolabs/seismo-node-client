@@ -1,5 +1,5 @@
 var request = require('request');
-var query = require('query');
+var query = require('./query');
 
 module.exports = function (app, options) {
 	if (!app) {
