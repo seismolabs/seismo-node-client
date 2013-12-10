@@ -38,11 +38,11 @@ Scenarios for web (express.js) application:
 
 ```js
 var express = require('express');
-var analytics = require('analytics');
+var seismo = require('seismo');
 var app = express();
 
 // create analytics client, by providing app id
-var events = analytics('my-web-app');
+var events = seismo('my-web-app');
 
 var eventsMiddleware = function (event, data) {
 	return function (req, res, next) {
@@ -75,8 +75,8 @@ app.get('/search', function(req, res) {
 You can query server for data you application collected.
 
 ```js
-var analytics = require('analytics');
-var events = analytics('my-web-app');
+var seismo = require('seismo');
+var events = seismo('my-web-app');
 
 // query all collected events
 events.query(function (err, results) {
