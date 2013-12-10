@@ -2,13 +2,13 @@
 
 ## Create client and post events
 
-This is a small example of `analytics` usage:
+This is a small example of `seismo-client` usage:
 
 ```js
-var analytics = require('analytics');
+var seismo = require('seismo-client');
 
 // create analytics client, by providing app id
-var events = analytics('my-web-app');
+var events = seismo('my-web-app');
 
 // call function, with the name of event
 events('application started');
