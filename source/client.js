@@ -1,5 +1,5 @@
 var request = require('request');
-var querystring = require('querystring');
+var query = require('./query');
 
 module.exports = function (app, options) {
 	if (!app) {
@@ -44,20 +44,6 @@ module.exports = function (app, options) {
 
 		callback(null, accessToken);
 	}
-
-	var query = {
-		events: function (params) {
-			if (typeof params === 'string') {
-				return '?event=' + params;
-			}
-
-			return '?' + querystring.stringify(params);
-		},
-
-		reports: function (params) {
-			return '?' + querystring.stringify(params);
-		}
-	};
 
 	var client = function client(event, data, callback) {
 		var url = server + '/api/events/' + app;

@@ -8,6 +8,32 @@
 $ npm install seismo-client
 ```
 
+## Development
+
+Clone git repository,
+
+```
+$ git clone https://github.com/seismolabs/seismo-node-client.git
+```
+
+Clone seismo server and make sure all prereqisits installed,
+
+```
+$ git clone https://github.com/seismolabs/seismo.git
+```
+
+Start `seismo` server in test mode,
+
+```
+$ NODE_ENV="test" node source/server.js
+```
+
+Run tests,
+
+```
+$ npm test
+```
+
 ## Create client and post events
 
 This is a small example of `seismo-client` usage:
