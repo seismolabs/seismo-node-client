@@ -23,7 +23,10 @@ describe('quering events', function () {
 	});
 
 	before(function (done) {
-		async.each(['application started', 'application stopped', 'application started'], postEvent, done);
+		async.each(['application started', 'application stopped', 'application started'], postEvent, function(err) {
+			console.log(err);
+			done(err);
+		});
 
 		function postEvent(event, callback) {
 			events(event, callback);

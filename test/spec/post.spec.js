@@ -5,8 +5,6 @@ describe('posting events', function () {
 	var app, events, error, response, options;
 
 	before(function () {
-		console.log(process.env.NODE_ENV);
-
 		options = {
 			credentials: {
 				username: 'seismo',
