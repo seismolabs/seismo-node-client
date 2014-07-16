@@ -63,7 +63,7 @@ module.exports = function (app, options) {
 				}
 
 				if (resp.statusCode !== 201) {
-					return callback({message: 'server error', code: resp.statusCode, err: resp.body});
+					return callback({message: 'server error', status: resp.statusCode, err: resp.body});
 				}
 
 				callback(null, resp.body);
@@ -91,7 +91,7 @@ module.exports = function (app, options) {
 				}
 
 				if (resp.statusCode !== 200) {
-					return callback({message: 'server error', code: resp.statusCode});
+					return callback({message: 'server error', status: resp.statusCode});
 				}
 
 				callback(null, resp.body);
@@ -118,7 +118,7 @@ module.exports = function (app, options) {
 				}
 
 				if (resp.statusCode !== 200) {
-					return callback({message: 'server error', code: resp.statusCode});
+					return callback({message: 'server error', status: resp.statusCode});
 				}
 
 				callback(null, resp.body);
